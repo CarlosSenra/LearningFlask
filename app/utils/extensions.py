@@ -1,14 +1,12 @@
 from flask_httpauth import HTTPBasicAuth
+from flask_sqlalchemy import SQLAlchemy
 
 auth = HTTPBasicAuth()
-
-# User store (move to database later)
-users = {
-    "user1": "password1",
-    "user2": "password2"
-}
+db = SQLAlchemy()
 
 @auth.verify_password
 def verify_password(username, password):
-    if username in users and users[username] == password:
+    from app.models.user import User
+    user = User.query.filter_by(username=username).first()
+    if user and user.check_password(password):
         return username
