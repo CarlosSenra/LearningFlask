@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flasgger import Swagger
+#from config.ConfigFlask import Config
 
 app = Flask(__name__)
 
@@ -8,6 +9,10 @@ auth = HTTPBasicAuth()
 
 users = {"user1": "password1",
         "user2": "password2"}
+
+app.config.from_object('config.ConfigFlask')
+
+swagger = Swagger(app)
 
 @auth.verify_password
 def verify_password(username, password):
@@ -50,13 +55,6 @@ def delete_item(item_id):
 @auth.login_required
 def hello():
     return jsonify({'message': 'Hello, World!'})
-
-app.config['SWAGGER'] = {
-    'title': 'My Flask API',
-    'uiversion': 3
-}
-
-swagger = Swagger(app)
 
 if __name__ == "__main__":
     app.run(debug=True)

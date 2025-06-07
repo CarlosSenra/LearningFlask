@@ -12,6 +12,8 @@ executing==2.2.0
 flasgger==0.9.7.1
 Flask==3.1.1
 Flask-HTTPAuth==4.8.0
+Flask-SQLAlchemy==3.1.1
+greenlet==3.2.3
 idna==3.10
 ipykernel==6.29.5
 ipython==9.3.0
@@ -47,6 +49,7 @@ requests==2.32.3
 rpds-py==0.25.1
 six==1.17.0
 soupsieve==2.7
+SQLAlchemy==2.0.41
 stack-data==0.6.3
 tornado==6.5.1
 traitlets==5.14.3
