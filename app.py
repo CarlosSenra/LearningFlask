@@ -18,13 +18,6 @@ def verify_password(username, password):
 def home():
     return "Hello, Flask!"
 
-app.config['SWAGGER'] = {
-    'title': 'My Flask API',
-    'uiversion': 3
-}
-
-swagger = Swagger(app)
-
 itens = []
 
 @app.route('/itens', methods=['GET'])
@@ -58,5 +51,14 @@ def delete_item(item_id):
 def hello():
     return jsonify({'message': 'Hello, World!'})
 
+app.config['SWAGGER'] = {
+    'title': 'My Flask API',
+    'uiversion': 3
+}
+
+swagger = Swagger(app)
+
 if __name__ == "__main__":
     app.run(debug=True)
+    
+    
