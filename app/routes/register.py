@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.services.item_service import ItemService
-from app.models.user import User
+from app.services.user_service import UserService
 from app.utils.extensions import db
 
 register_bp = Blueprint('register', __name__)
@@ -9,12 +8,7 @@ register_bp = Blueprint('register', __name__)
 def register_user():
 
     data = request.get_json()
-    if User.query.filter_by(username=data['username']).first():
-        return jsonify({'error': 'User alredy exists'}), 400
-    
-    new_user = User(username=data['username'])
-    new_user.set_password(data['password'])
-    db.session.add(new_user)
-    db.session.commit()
+    UserService.create_user(data)
+
     return jsonify({"msg": "User createde"}), 201
 
