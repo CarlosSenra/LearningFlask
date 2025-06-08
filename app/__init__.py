@@ -1,7 +1,7 @@
 from flask import Flask
 from flasgger import Swagger
 from app.utils.extensions import auth, db
-from app.routes import auth_bp, items_bp
+from app.routes import auth_bp, items_bp, register_bp
 
 def create_app():
     app = Flask(__name__)
@@ -12,6 +12,7 @@ def create_app():
     
     app.register_blueprint(auth_bp)
     app.register_blueprint(items_bp)
+    app.register_blueprint(register_bp)
     
     @app.route('/')
     def home():
