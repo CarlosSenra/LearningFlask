@@ -28,7 +28,9 @@ class User(db.Model):
 
         except Exception as e:
             db.session.rollback()
-            return None, {'error': 'Failed to create user'}        
+            return None, {'error': 'Failed to create user'}       
+
+     
     
     def __repr__(self):
         return f'<User {self.username}>'

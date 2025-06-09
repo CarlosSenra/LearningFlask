@@ -14,8 +14,3 @@ def hello():
 @auth.login_required
 def protected():
     return jsonify({'message': f'Hello {g.current_user.username}!', 'user_id': g.current_user.id})
-
-@auth_bp.route('/test', methods=['GET'])
-def test():
-    """Test route to verify blueprint registration"""
-    return jsonify({'message': 'Auth blueprint is working!'})
