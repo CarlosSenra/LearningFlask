@@ -1,6 +1,6 @@
 from flask import Flask
 from flasgger import Swagger
-from app.utils.extensions import auth, db
+from app.utils.extensions import auth, db, jwt
 from app.routes import auth_bp, items_bp, register_bp
 
 def create_app():
@@ -8,6 +8,7 @@ def create_app():
     app.config.from_object('app.config.Config')
     
     db.init_app(app)
+    jwt.init_app(app)
     Swagger(app)
     
     app.register_blueprint(auth_bp)
